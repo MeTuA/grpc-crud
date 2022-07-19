@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "/proto";
+
+service DataService {
+    rpc DeleteData(Data) returns (Data) {}
+    rpc UpdateData(Data) returns (Data) {}
+    rpc GetData(Data) returns (Data) {}
+    rpc GetAllData(EmptyParams) returns (ListData) {}
+}
+
+service DataLoader {
+    rpc LoadData(EmptyParams) returns (EmptyParams) {}
+}
+
+message Data {
+    int64 id = 1;
+    int64 user_id = 2;
+    string title = 3;
+    string body = 4;
+}
+
+message ListData {
+    repeated Data data = 1;
+}
+
+message EmptyParams {}
